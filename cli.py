@@ -24,6 +24,8 @@ class Color:
     CYAN = "\033[96m"
     WHITE = "\033[97m"
     GRAY = "\033[90m"
+    BG_RED = "\033[101m"
+    BG_YELLOW = "\033[103m"
 
 def colored(text: str, color: str) -> str:
     """Return colored text for terminal output."""
@@ -130,10 +132,15 @@ def main(argv: list[str] | None = None) -> int:
     print(f"\n{Color.BOLD}{'─' * 70}{Color.RESET}")
     
     if failed_files:
-        print(f"\n{colored(f'❌ {len(failed_files)} file(s) below threshold:', Color.RED)}\n")
+        # Red highlighted header
+        failed_header = f"{Color.BG_RED}{Color.WHITE}{Color.BOLD} ❌ {len(failed_files)} FILE(S) BELOW THRESHOLD {Color.RESET}"
+        print(f"\n{failed_header}\n")
+        
         for file_path, score in failed_files:
-            score_str = colored(f"{score}/10", Color.RED)
-            print(f"   • {file_path}: {score_str}")
+            # Red background for each failed file line
+            file_line = f"{Color.BG_RED}{Color.WHITE}{Color.BOLD} {file_path}: {score}/10 {Color.RESET}"
+            print(f"   {file_line}")
+        
         print(f"\n{Color.YELLOW}💡 Tip: Fix the issues above to improve your scores!{Color.RESET}\n")
         return 1
 
