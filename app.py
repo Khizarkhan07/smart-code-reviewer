@@ -263,6 +263,20 @@ st.markdown(
         border: 1px solid #334155 !important;
         padding: 1rem !important;
     }
+
+    /* ── Markdown code blocks (sidebar) ──────────────── */
+    section[data-testid="stSidebar"] pre {
+        background: #0f172a !important;
+        border: 1px solid #334155 !important;
+        border-radius: 10px !important;
+        padding: 12px !important;
+    }
+    section[data-testid="stSidebar"] code {
+        background: #0f172a !important;
+        color: #f1f5f9 !important;
+        font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+        font-size: 0.85rem !important;
+    }
     </style>
     """,
     unsafe_allow_html=True,
