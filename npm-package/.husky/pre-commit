@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Get staged code files
+FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(ts|tsx|js|jsx|py|go|rs|cpp|c|java)$')
+
+if [ -z "$FILES" ]; then
+  echo "✅ No code files to review"
+  exit 0
+fi
+
+echo "🔍 Running Smart Code Reviewer on staged files..."
+npx smart-code-reviewer $FILES
