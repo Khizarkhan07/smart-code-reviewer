@@ -4,7 +4,7 @@ AI-powered code review assistant that analyses your code for **readability**, **
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.30+-red)
-![Gemini](https://img.shields.io/badge/Google%20Gemini-Free%20Tier-yellow)
+![Groq](https://img.shields.io/badge/Groq-Free%20Tier-green)
 
 ---
 
@@ -20,7 +20,7 @@ AI-powered code review assistant that analyses your code for **readability**, **
 - 💡 **Actionable suggestions** citing specific lines/symbols
 - 📊 **Visual score breakdown** chart
 - 📂 **Built-in sample snippets** (Python, JavaScript, Java) to try instantly
-- ⚡ Powered by **Google Gemini 2.0 Flash** (free tier)
+- ⚡ Powered by **Llama 3.3 70B via Groq** (free tier)
 
 ---
 
@@ -34,9 +34,14 @@ cd Smart-Code-Reviewer
 uv sync          # or: pip install -e .
 ```
 
-### 2. Get a free Gemini API key
+### 2. Get a free Groq API key and configure
 
-Go to **https://aistudio.google.com/apikey** and create a key.
+Go to **https://console.groq.com/keys** and create a key. Copy it and update your `.env` file:
+
+```bash
+cp .env.example .env
+# Edit .env and paste your Groq API key
+```
 
 ### 3. Run the app
 
@@ -44,7 +49,7 @@ Go to **https://aistudio.google.com/apikey** and create a key.
 streamlit run app.py
 ```
 
-Then open **http://localhost:8501** in your browser, paste your API key in the sidebar, and start reviewing!
+Then open **http://localhost:8501** in your browser and start reviewing!
 
 ---
 
@@ -65,7 +70,7 @@ Smart-Code-Reviewer/
 ## 🛠 Tech Stack
 
 - **[Streamlit](https://streamlit.io)** — interactive web UI
-- **[Google Gemini](https://ai.google.dev)** — LLM-powered code analysis
+- **[Groq](https://groq.com)** — fast LLM inference (Llama 3.3 70B)
 - **[Pygments](https://pygments.org)** — syntax highlighting support
 
 ---

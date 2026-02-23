@@ -6,10 +6,16 @@ Run with:  streamlit run app.py
 
 from __future__ import annotations
 
+import os
 import streamlit as st
+from dotenv import load_dotenv
 
 from reviewer import CategoryFeedback, ReviewResult, configure_groq, review_code
 from samples import SAMPLES
+
+# Load environment variables from .env file
+load_dotenv()
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 # ── Page config ─────────────────────────────────────────────────────────────
 
@@ -381,21 +387,31 @@ def _render_result(result: ReviewResult) -> None:
 with st.sidebar:
     st.markdown(
         """
-        <div style="text-align:center;padding:1rem 0 0.5rem">
+        <div style="text-align:center;padding:1rem 0 0.5rem;color:#ffffff">
             <div style="font-size:2.5rem">🔍</div>
-            <div style="font-size:1.3rem;font-weight:800;letter-spacing:-0.02em">Smart Code Reviewer</div>
-            <div style="font-size:0.78rem;opacity:0.6;margin-top:2px">AI-Powered Code Analysis</div>
+            <div style="font-size:1.3rem;font-weight:800;letter-spacing:-0.02em;color:#ffffff">Smart Code Reviewer</div>
+            <div style="font-size:0.78rem;opacity:0.7;margin-top:2px;color:#e2e8f0">AI-Powered Code Analysis</div>
         </div>
         """,
         unsafe_allow_html=True,
     )
     st.markdown("---")
 
-    api_key = st.text_input(
-        "🔑 Groq API Key",
-        type="password",
-        help="Get a free key at https://console.groq.com/keys",
-    )
+    # Display API key status
+    if GROQ_API_KEY:
+        st.markdown(
+            '<span class="sidebar-badge">✅ API Key Loaded</span>',
+            unsafe_allow_html=True,
+        )
+    else:
+        st.warning(
+            "⚠️ **No API Key found!**\n\n"
+            "1. Go to https://console.groq.com/keys\n"
+            "2. Create an API key\n"
+            "3. Add it to `.env` file: `GROQ_API_KEY=your_key_here`\n"
+            "4. Restart the app"
+        )
+
     st.markdown(
         '<span class="sidebar-badge">⚡ Llama 3.3 70B via Groq</span>',
         unsafe_allow_html=True,
@@ -419,7 +435,7 @@ with st.sidebar:
 
     st.markdown("---")
     st.markdown(
-        '<div style="text-align:center;font-size:0.75rem;opacity:0.5">'
+        '<div style="text-align:center;font-size:0.75rem;opacity:0.7;color:#c7d2fe">'
         'Built with Streamlit & Groq</div>',
         unsafe_allow_html=True,
     )
@@ -487,14 +503,17 @@ if not code_input.strip():
 # ── Run review ──────────────────────────────────────────────────────────────
 
 if review_btn:
-    if not api_key:
-        st.warning("⚠️ Please enter your Groq API key in the sidebar.")
+    if not GROQ_API_KEY:
+        st.error(
+            "❌ **API Key not configured!**\n\n"
+            "Please add your Groq API key to the `.env` file and restart the app."
+        )
         st.stop()
     if not code_input.strip():
         st.warning("⚠️ Please paste some code to review.")
         st.stop()
 
-    configure_groq(api_key)
+    configure_groq(GROQ_API_KEY)
 
     with st.status("🔍 Reviewing your code…", expanded=True) as status:
         st.write("Sending code to Llama 3.3 70B via Groq…")
