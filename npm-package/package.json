@@ -1,0 +1,49 @@
+{
+  "name": "smart-code-reviewer",
+  "version": "1.0.0",
+  "description": "AI-powered code review tool for readability, structure, and maintainability using Groq LLM",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "smart-code-reviewer": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/cli.ts",
+    "prepack": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "code-review",
+    "ai",
+    "groq",
+    "llama",
+    "pre-commit",
+    "code-quality",
+    "linter",
+    "readability",
+    "maintainability"
+  ],
+  "author": "Khizar Khan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Khizarkhan07/smart-code-reviewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Khizarkhan07/smart-code-reviewer/issues"
+  },
+  "homepage": "https://github.com/Khizarkhan07/smart-code-reviewer#readme",
+  "dependencies": {
+    "groq-sdk": "^0.4.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
