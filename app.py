@@ -427,6 +427,34 @@ with st.sidebar:
 
     st.markdown("---")
     st.markdown(
+        "**📦 Use as Pre-Commit Hook**\n\n"
+        "Use the CLI to automatically review code before commits:\n\n"
+        "```bash\n"
+        "# Install globally\n"
+        "pip install smart-code-reviewer\n\n"
+        "# Review a file\n"
+        "smart-code-reviewer file.py\n\n"
+        "# Set threshold (default: 6.0)\n"
+        "CODE_REVIEW_THRESHOLD=8.0 \\\n"
+        "smart-code-reviewer *.py\n"
+        "```\n\n"
+        "**Setup for Git:**\n\n"
+        "Create `.pre-commit-config.yaml`:\n"
+        "```yaml\n"
+        "repos:\n"
+        "  - repo: local\n"
+        "    hooks:\n"
+        "      - id: smart-code-reviewer\n"
+        "        name: Smart Code Review\n"
+        "        entry: smart-code-reviewer\n"
+        "        language: system\n"
+        "        types: [python]\n"
+        "```\n\n"
+        "Then run: `pre-commit install`"
+    )
+
+    st.markdown("---")
+    st.markdown(
         "**Analyses 3 dimensions:**\n\n"
         "📖 Readability\n\n"
         "🏗️ Structure\n\n"
