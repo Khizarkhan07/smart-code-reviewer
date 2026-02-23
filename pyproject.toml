@@ -11,6 +11,9 @@ dependencies = [
     "pygments>=2.17.0",
 ]
 
+[project.scripts]
+smart-code-reviewer = "cli:main"
+
 [tool.hatch.build.targets.wheel]
 packages = ["."]
 
