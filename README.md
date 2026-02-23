@@ -2,6 +2,8 @@
 
 AI-powered code review assistant that analyses your code for **readability**, **structure**, and **maintainability** — before it ever reaches a human reviewer.
 
+**[🚀 Try the Live Demo](https://smart-code-reviewer-demo.streamlit.app/)**
+
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.30+-red)
 ![Groq](https://img.shields.io/badge/Groq-Free%20Tier-green)
